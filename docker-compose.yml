@@ -1,0 +1,25 @@
+services:
+  wordpress:
+    build: 
+      context: .
+      dockerfile: Dockerfile-local.yml
+    container_name: wordpress-dev
+    ports:
+      - "8081:80"
+    volumes:
+      # Mount your local theme folder into the WordPress container
+      - ./tailpress-master:/var/www/html/wp-content/themes/tailpress-master
+    environment:
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DEBUG: "true"
+  db:
+    image: mariadb:10.7
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpass
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: user
+      MARIADB_PASSWORD: password

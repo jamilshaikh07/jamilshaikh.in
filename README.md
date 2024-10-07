@@ -1,2 +1,0 @@
-# jamilshaikh.in
-personal site
