@@ -1,9 +1,8 @@
-FROM node:16-alpine AS builder
+FROM node:16-alpine
 WORKDIR /app
-COPY tailpress-master ./tailpress-master
-WORKDIR /app/tailpress-master
+COPY portfolio_1-main ./portfolio_1-main
+WORKDIR /app/portfolio_1-main
 RUN npm install
-RUN npm run production
-FROM docker.io/bitnami/wordpress:6.6.2-debian-12-r6
-WORKDIR /bitnami/wordpress
-COPY --from=builder /app/tailpress-master /bitnami/wordpress/wp-content/themes/tailpress-master
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "run", "start"]

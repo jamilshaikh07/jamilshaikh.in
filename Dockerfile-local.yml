@@ -1,7 +1,0 @@
-FROM node:16-alpine AS builder
-WORKDIR /app
-COPY tailpress-master ./tailpress-master
-WORKDIR /app/tailpress-master
-RUN npm install
-RUN npm run production
-EXPOSE 3000
