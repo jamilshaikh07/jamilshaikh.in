@@ -20,4 +20,11 @@ spec:
           image: jamilshaikh07/portfolio:v6
           ports:
             - containerPort: 3000
+          resources:
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
           
