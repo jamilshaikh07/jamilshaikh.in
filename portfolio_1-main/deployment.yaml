@@ -20,17 +20,4 @@ spec:
           image: jamilshaikh07/portfolio:v6
           ports:
             - containerPort: 3000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: portfolio-service
-spec:
-  selector:
-    app: portfolio
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 3000
-  type: NodePort
-
+          
