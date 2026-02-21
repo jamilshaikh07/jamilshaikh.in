@@ -37,33 +37,27 @@ That's it. That's the whole thing.
 
 No fancy ML pipeline. No custom model training. No Kubernetes operator for AI. Just an agent with `kubectl` access and a schedule.
 
-Here's what my `#devops` Slack channel looks like now:
+### The First Version Was... Ugly
 
-> **:warning: ArgoCD Sync Status — Drift Detected**
->
-> :red_circle: `app-of-apps` — **OutOfSync**, Healthy
-> :red_circle: `autofix-dojo` — **Unknown**, Missing
-> :red_circle: `cloudflared` — **Synced**, Progressing
-> :red_circle: `metrics-server` — **OutOfSync**, Healthy
-> :red_circle: `secrets` — **OutOfSync**, Healthy
->
-> *5 of 22 apps need attention.*
+When I first got it working, the Slack messages looked like this:
 
----
+![Before — plain text, no formatting, no structure. Just raw output dumped into Slack.](images/01-before-plain-slack.png)
 
-> **:white_check_mark: Cluster Health Report**
-> :clock3: Saturday, February 21st, 2026 — 4:37 PM
->
-> **Nodes:** 5/5 Ready
-> **Pods:** All healthy
-> **Resource Usage:**
-> `talos-cp-01` — CPU: 20%, MEM: 59%
-> `talos-wk-01` — CPU: 4%, MEM: 41%
-> `talos-wk-02` — CPU: 17%, MEM: 69%
-> `talos-wk-03` — CPU: 4%, MEM: 61%
-> `talos-wk-04` — CPU: 6%, MEM: 11%
->
-> *No issues detected.*
+Plain text. No structure. No indicators. Just a wall of text that your eyes glaze over — basically the same experience as reading raw `kubectl` output. Not exactly the "junior SRE teammate" vibe I was going for.
+
+### Then I Fixed the Prompts
+
+The formatting quality comes entirely from the prompt. I gave each agent an exact Slack template — emoji indicators, bold headers, code blocks, blockquotes. Even a small free model follows it perfectly.
+
+Here's what `#devops` looks like now:
+
+![After — rich Slack formatting with emoji indicators, bold headers, per-node metrics, and structured reports.](images/02-after-rich-slack.png)
+
+Same data. Same model. Completely different experience. That's the ArgoCD drift report catching 5 out-of-sync apps, followed by a cluster health report with per-node CPU and memory usage.
+
+And here's a closer look at the ArgoCD drift detection:
+
+![ArgoCD drift report — emoji indicators, app-level sync status, and a clear count of apps needing attention.](images/03-argocd-drift.png)
 
 These aren't templated Alertmanager notifications. These are an AI agent running real commands against my cluster, interpreting the output, and writing me a report. Every 15 minutes. Automatically.
 
@@ -79,13 +73,13 @@ I took a box that was collecting dust:
 
 - **Intel i3-2100** (yes, from 2011)
 - **8 GB RAM**
-- **Ubuntu 24.04 Server** (headless)
+- **Debian 13 Trixie** (headless, no GUI)
 - Sitting on my homelab VLAN
 
 ### The Stack
 
 ```
-Ubuntu 24.04
+Debian 13 (Trixie)
 └── OpenClaw 2026.2.17
     ├── Slack (Socket Mode — no public URL needed)
     ├── kubectl + talosctl + helm
@@ -108,14 +102,17 @@ I connected it to a Slack workspace with four channels — `#devops`, `#alerts`,
 
 I think of each cron job as a little agent with one job:
 
-| Agent | What It Does | Frequency | Channel |
-|-------|-------------|-----------|---------|
-| **Cluster Watcher** | Checks nodes, pods, resource usage | Every 15 min | #devops |
-| **Alert Sentinel** | Catches CrashLoops, OOMKills, node failures | Every 30 min | #alerts |
-| **ArgoCD Auditor** | Detects sync drift across 22 apps | Every 30 min | #devops |
-| **Talos Inspector** | Monitors node health, etcd, memory, disk | Every hour | #devops |
-| **AI News Curator** | Morning AI industry digest | 8:00 AM | #ai |
-| **Tech News Curator** | K8s/CNCF/DevOps/Security digest | 8:15 AM | #news |
+**Cluster Watcher** — Checks nodes, pods, resource usage → every 15 min → `#devops`
+
+**Alert Sentinel** — Catches CrashLoops, OOMKills, node failures → every 30 min → `#alerts`
+
+**ArgoCD Auditor** — Detects sync drift across 22 apps → every 30 min → `#devops`
+
+**Talos Inspector** — Monitors node health, etcd, memory, disk → every hour → `#devops`
+
+**AI News Curator** — Morning AI industry digest → 8:00 AM IST → `#ai`
+
+**Tech News Curator** — K8s/CNCF/DevOps/Security digest → 8:15 AM IST → `#news`
 
 The monitoring agents are silent when everything's fine. No "all clear" spam every 15 minutes. They only speak up when something needs attention — or when they run their periodic health summary.
 
@@ -184,15 +181,16 @@ That's like hiring a principal engineer to check if the office lights are on.
 
 ### The Final Setup
 
-| Task | Model | Cost |
-|------|-------|------|
-| Cluster monitoring (96/day) | Gemini 2.5 Flash | **$0** |
-| Alert checking (48/day) | Gemini 2.5 Flash | **$0** |
-| ArgoCD audit (48/day) | Gemini 2.5 Flash | **$0** |
-| Talos health (24/day) | Gemini 2.5 Flash | **$0** |
-| AI news (1/day) | Claude Opus 4.6 | Paid |
-| Tech news (1/day) | Claude Opus 4.6 | Paid |
-| Slack conversations | Claude Opus 4.6 | Paid |
+**Moved to Gemini 2.5 Flash (FREE):**
+- Cluster monitoring — 96 calls/day → **$0**
+- Alert checking — 48 calls/day → **$0**
+- ArgoCD audit — 48 calls/day → **$0**
+- Talos health — 24 calls/day → **$0**
+
+**Kept on Claude Opus 4.6 (Paid):**
+- AI news digest — 1 call/day
+- Tech news digest — 1 call/day
+- Interactive Slack conversations — on demand
 
 **216 daily monitoring calls moved to free.** Claude only runs for the 2 morning news digests (which actually need reasoning and web search) and my interactive Slack conversations.
 
