@@ -1,0 +1,29 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="mailto:hi@jamilshaikh.in">hi@jamilshaikh.in</a>
+      <a href="https://github.com/jamilshaikh07" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/jamilshaikh07/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p>Built with care · Navi Mumbai, India</p>
+  </div>
+</footer>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    document.getElementById('theme-icon').textContent = next === 'dark' ? '☀️' : '🌙';
+  }
+
+  (function() {
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
+      document.getElementById('theme-icon').textContent = saved === 'dark' ? '☀️' : '🌙';
+    }
+  })();
+</script>

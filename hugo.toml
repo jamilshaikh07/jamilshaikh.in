@@ -1,0 +1,27 @@
+baseURL = "https://jamilshaikh.in/"
+languageCode = "en-us"
+title = "Jamil Shaikh"
+
+[params]
+  description = "Senior Site Reliability Engineer specializing in Kubernetes, multi-cloud infrastructure, and platform engineering."
+  author = "Jamil Rafique Shaikh"
+
+[pagination]
+  pagerSize = 10
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[markup]
+  [markup.highlight]
+    style = "dracula"
+    lineNos = false
+    guessSyntax = true
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false

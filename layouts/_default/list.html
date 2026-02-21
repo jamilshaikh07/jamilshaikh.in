@@ -1,0 +1,30 @@
+{{ define "main" }}
+<div class="blog-header">
+  <h1>Blog</h1>
+  <p>Notes on infrastructure, platform engineering, and things I learn along the way.</p>
+</div>
+
+<div class="blog-list">
+  {{ range .Pages }}
+  <a href="{{ .RelPermalink }}" class="blog-post-card">
+    <div class="post-date">{{ .Date.Format "Jan 2, 2006" }}</div>
+    <div class="post-title">{{ .Title }}</div>
+    {{ with .Params.summary }}
+    <div class="post-summary">{{ . }}</div>
+    {{ end }}
+    {{ with .Params.tags }}
+    <div class="post-tags">
+      {{ range . }}
+      <span class="post-tag">{{ . }}</span>
+      {{ end }}
+    </div>
+    {{ end }}
+    <span class="read-more">Read more →</span>
+  </a>
+  {{ else }}
+  <div class="blog-empty">
+    <p>No posts yet. Check back soon.</p>
+  </div>
+  {{ end }}
+</div>
+{{ end }}

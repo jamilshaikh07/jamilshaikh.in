@@ -1,0 +1,20 @@
+<nav class="nav">
+  <div class="container nav-inner">
+    <div class="nav-brand">
+      <a href="/">
+        <span class="prompt">~</span> <span class="path">jamil</span><span class="cursor"></span>
+      </a>
+    </div>
+    <div class="nav-links">
+      {{ if .IsHome }}
+      <a href="#experience" class="hide-mobile">experience</a>
+      <a href="#projects" class="hide-mobile">projects</a>
+      <a href="#skills" class="hide-mobile">skills</a>
+      {{ end }}
+      <a href="/blog/">blog</a>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span id="theme-icon">☀️</span>
+      </button>
+    </div>
+  </div>
+</nav>
