@@ -11,7 +11,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  {{ $blogCSS := resources.Get "css/blog.css" | minify | fingerprint }}
   <style>
     /* ===== CSS VARIABLES ===== */
     :root {
@@ -281,6 +280,6 @@
     }
   </style>
   {{ if not .IsHome }}
-  <link rel="stylesheet" href="{{ $blogCSS.RelPermalink }}">
+  <style>{{ (resources.Get "css/blog.css" | minify).Content | safeCSS }}</style>
   {{ end }}
 </head>
