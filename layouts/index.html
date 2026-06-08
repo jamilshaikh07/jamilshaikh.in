@@ -549,7 +549,7 @@
       <div class="project-header">
         <div class="project-icon">🏗️</div>
         <div>
-          <div class="project-name">Homelab Platform <span class="tag" style="font-size:11px;margin-left:6px;">★ 117</span></div>
+          <div class="project-name">Homelab Platform <span id="homelab-stars" class="tag" style="font-size:11px;margin-left:6px;">★ 136</span></div>
           <div class="project-tagline">Production-grade Kubernetes on Proxmox — because staging should mirror prod</div>
         </div>
       </div>
@@ -651,6 +651,15 @@
 
 {{ define "scripts" }}
 <script>
+  // Live GitHub star count
+  fetch('https://api.github.com/repos/jamilshaikh07/talos-proxmox-gitops')
+    .then(r => r.json())
+    .then(d => {
+      const el = document.getElementById('homelab-stars');
+      if (el && d.stargazers_count) el.textContent = '★ ' + d.stargazers_count;
+    })
+    .catch(() => {});
+
   // Scroll-triggered fade-in
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
