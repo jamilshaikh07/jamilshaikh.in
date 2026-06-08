@@ -5,7 +5,7 @@
 </div>
 
 <div class="blog-list">
-  {{ range .Pages }}
+  {{ range .Pages.ByDate.Reverse }}
   <a href="{{ .RelPermalink }}" class="blog-post-card">
     <div class="post-date">{{ .Date.Format "Jan 2, 2006" }}</div>
     <div class="post-title">{{ .Title }}</div>

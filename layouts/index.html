@@ -84,8 +84,12 @@
   /* ===== CERTIFICATIONS ===== */
   .certs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
+  }
+
+  @media (max-width: 640px) {
+    .certs-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   .cert-card {
@@ -300,27 +304,6 @@
     font-size: 12px;
     margin-top: 12px;
     color: var(--accent);
-  }
-
-  /* ===== EDUCATION ===== */
-  .edu-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .edu-item:last-child { border-bottom: none; }
-
-  .edu-degree { font-weight: 600; font-size: 15px; color: var(--text-primary); }
-  .edu-school { font-size: 14px; color: var(--text-secondary); }
-
-  .edu-year {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-muted);
-    white-space: nowrap;
   }
 
   /* ===== RESPONSIVE (resume) ===== */
@@ -606,28 +589,55 @@
       </a>
     </div>
 
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-icon">📊</div>
+        <div>
+          <div class="project-name">KubeWise</div>
+          <div class="project-tagline">Kubernetes Cost & Performance Optimization</div>
+        </div>
+      </div>
+      <p class="project-desc">
+        Advisory-only Kubernetes right-sizing and cost optimization platform. Connects read-only to your cluster, detects over-provisioned workloads, estimates cost savings, and generates advisory patches — never auto-applies changes. Ships with a demo mode pre-seeded with realistic cluster data.
+      </p>
+      <div class="project-tech">
+        <span class="tag">Python</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">React</span>
+        <span class="tag">Kubernetes</span>
+        <span class="tag">Docker</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-icon">🚀</div>
+        <div>
+          <div class="project-name">vercel-clone</div>
+          <div class="project-tagline">Self-hosted PaaS on Bare-metal Kubernetes</div>
+        </div>
+      </div>
+      <p class="project-desc">
+        Replicates the Vercel deployment experience on a self-hosted Talos Linux Kubernetes cluster. Connect a GitHub repo, <code>git push</code>, get a live URL. Features multi-tenant isolation, per-app Postgres via CloudNativePG, Kaniko rootless builds, runtime log streaming, and a self-rebuilding control plane in Go.
+      </p>
+      <div class="project-tech">
+        <span class="tag">Go</span>
+        <span class="tag">Kubernetes</span>
+        <span class="tag">Talos Linux</span>
+        <span class="tag">Kaniko</span>
+        <span class="tag">Traefik</span>
+        <span class="tag">CloudNativePG</span>
+        <span class="tag">Cloudflare</span>
+      </div>
+      <a href="https://spinup.in" target="_blank" rel="noopener" class="project-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Live at spinup.in →
+      </a>
+    </div>
+
   </div>
 </section>
 
-<!-- EDUCATION -->
-<section class="section" id="education">
-  <div class="section-label">Academic Background</div>
-  <div class="section-title">Education</div>
-  <div class="edu-item">
-    <div>
-      <div class="edu-degree">B.Sc. in Information Technology</div>
-      <div class="edu-school">Pillai's College, Mumbai</div>
-    </div>
-    <div class="edu-year">2014 — 2018</div>
-  </div>
-  <div class="edu-item">
-    <div>
-      <div class="edu-degree">Diploma in Computer Engineering</div>
-      <div class="edu-school">DY Patil Polytechnic, Mumbai</div>
-    </div>
-    <div class="edu-year">2007 — 2013</div>
-  </div>
-</section>
 {{ end }}
 
 {{ define "scripts" }}
