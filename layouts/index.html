@@ -336,8 +336,9 @@
   </div>
   <h1 class="fade-in">Jamil Rafique Shaikh</h1>
   <p class="hero-subtitle fade-in">
-    Site Reliability Engineer with 11+ years across Linux, infrastructure, DevOps, and cloud-native operations.
-    Production reliability, SLI/SLO, incident response, Kubernetes, multi-cloud, and GitOps.
+    Senior SRE with 11 years across telecom, FinTech, and cloud-native SaaS. I design platforms that stay up,
+    build tools that automate the toil, and run a production-grade Kubernetes homelab where I practice what I preach.
+    Currently reliability engineering for Acquia and Beamer at Improving India.
   </p>
   <div class="hero-actions fade-in">
     <a href="./Jamil_Shaikh_SRE_Resume.pdf" download class="btn btn-primary">
@@ -473,10 +474,10 @@
       <div class="timeline-company">Improving India <span style="color:var(--text-muted);font-weight:400;font-size:13px;">(formerly InfraCloud Technologies)</span></div>
       <div class="timeline-keywords">GKE · EKS · Kubernetes · GitHub Actions · ArgoCD · Terraform · Crossplane · Talos Linux · Prometheus · Grafana · Loki · Sumo Logic · SLI/SLO · ITSM</div>
       <ul class="timeline-bullets">
-        <li><strong>Acquia</strong> — SRE support for cloud-native digital experience platform workloads: monitoring, Kubernetes operations, deployment workflow improvements, and incident investigation.</li>
-        <li><strong>Beamer</strong> — Configured alerts and dashboards, troubleshot service issues, improved deployment and monitoring workflows for SaaS product reliability.</li>
-        <li>Defined SLI/SLO-style alerts and operational thresholds for cluster health, storage I/O, deployment health, and service availability. Built Grafana and Sumo Logic dashboards for RCA and MTTD reduction.</li>
-        <li>Operated Kubernetes platforms using Talos Linux, GKE/EKS, Crossplane, ArgoCD App-of-Apps, Helm, Velero, and SOPS. Supported CVE remediation, image updates, incident tickets, MOPs, and runbooks.</li>
+        <li><strong>Acquia</strong> — SRE for a leading enterprise digital experience platform. Established SLO-driven alerting, hardened Kubernetes deployment pipelines, and built incident runbooks that cut response time during on-call.</li>
+        <li><strong>Beamer</strong> — Improved production observability for a SaaS product used by thousands of teams: built Sumo Logic and Grafana dashboards, tightened deployment workflows, and introduced structured incident processes that reduced rollback frequency.</li>
+        <li>Defined SLI/SLO thresholds and MTTD-focused dashboards across cluster health, storage I/O, and service availability — turning reactive firefighting into proactive reliability work.</li>
+        <li>Turned CVE remediation from a manual quarterly chore into a tracked, GitOps-native operation: automated image update workflows, SLO-bound remediation timelines, and full audit trails across GKE/EKS clusters.</li>
       </ul>
     </div>
 
@@ -490,9 +491,9 @@
       <div class="timeline-company">Opcito Technologies</div>
       <div class="timeline-keywords">Azure · AKS · Terraform · Azure DevOps · GitHub Actions · Datadog · SAST/DAST · CBDC · FinTech</div>
       <ul class="timeline-bullets">
-        <li><strong>EMTECH</strong> — DevOps/SRE delivery for a US-based central banking and CBDC infrastructure company, focusing on Azure AKS, CI/CD pipelines, automation, and platform operations.</li>
-        <li>Implemented Azure DevOps and GitHub Actions workflows for repeatable deployments, automated checks, environment promotion, and release consistency — improving deployment consistency by 30%.</li>
-        <li>Integrated Datadog APM, logs, and monitors across application and infrastructure layers; reduced security incidents by 40% via SAST/SCA/DAST guardrails and cut cloud spend by 20% through right-sizing.</li>
+        <li><strong>EMTECH</strong> — Infrastructure and reliability engineering for central bank digital currency (CBDC) platform infrastructure. Zero tolerance for deployment failures; built guardrails to match.</li>
+        <li>Built GitHub Actions and Azure DevOps pipelines with environment promotion gates, automated validation, and rollback triggers — eliminating the class of "it worked in staging" failures that plagued the team.</li>
+        <li>Embedded SAST, SCA, and DAST into the delivery pipeline, reducing security incidents by 40%. Right-sized AKS workloads and tuned autoscaling policies, cutting cloud spend by 20% without touching SLAs.</li>
       </ul>
     </div>
 
@@ -506,8 +507,8 @@
       <div class="timeline-company">Alepo Technologies</div>
       <div class="timeline-keywords">OpenShift · OpenStack · Jenkins · Helm · Kubernetes · 5G VNF · jMeter</div>
       <ul class="timeline-bullets">
-        <li>Built Jenkins CI/CD pipelines for 5G VNF container images and developed Helm charts with tracing, alerting, and routing for Kubernetes deployments.</li>
-        <li>Led OpenShift platform deployment on OpenStack for Samsung Korea, improving infrastructure scalability and deployment agility.</li>
+        <li>Built the CI/CD foundation for 5G Virtual Network Functions deployed for <strong>Samsung Korea</strong> — Jenkins pipelines, Helm charts with integrated tracing and alerting, and jMeter load validation at carrier scale.</li>
+        <li>Led OpenShift cluster deployment on OpenStack, enabling containerized 5G workload operations that previously required manual, error-prone provisioning steps.</li>
       </ul>
     </div>
 
@@ -521,8 +522,8 @@
       <div class="timeline-company">Allot Communications</div>
       <div class="timeline-keywords">OpenStack · Kubernetes HA · Ansible · Prometheus · Telecom (ePLDT, Airtel, Lycamobile, MTN Uganda)</div>
       <ul class="timeline-bullets">
-        <li>Deployed on-premises Kubernetes HA clusters on OpenStack for telecom clients across Philippines, India, and Uganda.</li>
-        <li>Automated infrastructure deployments using Ansible and Bash, streamlining rollouts and reducing manual operations across client sites.</li>
+        <li>Deployed production Kubernetes HA clusters on OpenStack for telecom operators across three countries — ePLDT (Philippines), Airtel (India), Lycamobile, and MTN Uganda. On-site delivery, not remote hand-holding.</li>
+        <li>Wrote Ansible automation that replaced manual, undocumented deployment steps with repeatable, auditable playbooks — the kind of work that makes the next engineer's life easier instead of harder.</li>
       </ul>
     </div>
 
@@ -535,7 +536,7 @@
       </div>
       <div class="timeline-company">Change Networks · Super Petroleum Products</div>
       <div class="timeline-compact">
-        Migrated on-prem LAMP infrastructure to AWS. Managed Linux/Windows servers, pfSense firewall, LDAP, and network infrastructure. Established foundational sysadmin and security practices.
+        Where it all started. Linux servers, pfSense firewalls, LDAP, AWS migrations — the foundational layer that makes everything above possible. Most SREs skip this chapter. I didn't.
       </div>
     </div>
 
@@ -544,7 +545,7 @@
 
 <!-- PROJECTS -->
 <section class="section" id="projects">
-  <div class="section-label">Building Things</div>
+  <div class="section-label">What I Build</div>
   <div class="section-title">Projects</div>
   <div class="projects-grid">
 
@@ -553,11 +554,11 @@
         <div class="project-icon">🛡️</div>
         <div>
           <div class="project-name">autofix-dojo</div>
-          <div class="project-tagline">Kubernetes Operator for Automated Vulnerability Remediation</div>
+          <div class="project-tagline">From DefectDojo finding to merged PR — automatically</div>
         </div>
       </div>
       <p class="project-desc">
-        A Kubernetes operator that integrates DefectDojo with cluster infrastructure to automatically remediate container vulnerabilities. Performs automated image version bumps, creates PRs, and tracks SLO compliance for vulnerability remediation timelines. Designed CLI-first with full GitOps integration.
+        Container CVEs pile up when remediation is a manual process nobody owns. autofix-dojo watches DefectDojo for findings, maps them to running workloads, bumps image versions, opens PRs via GitHub/GitLab APIs, and tracks SLO compliance on remediation timelines — all within GitOps constraints. Prometheus metrics, web dashboard, zero direct kubectl access required.
       </p>
       <div class="project-tech">
         <span class="tag">Go</span>
@@ -577,11 +578,11 @@
         <div class="project-icon">🏗️</div>
         <div>
           <div class="project-name">Homelab Platform <span class="tag" style="font-size:11px;margin-left:6px;">★ 117</span></div>
-          <div class="project-tagline">Self-hosted Kubernetes Infrastructure</div>
+          <div class="project-tagline">Production-grade Kubernetes on Proxmox — because staging should mirror prod</div>
         </div>
       </div>
       <p class="project-desc">
-        Multi-node homelab running Proxmox virtualization with Talos Kubernetes clusters. Deploys production-grade observability (Grafana, Prometheus, ArgoCD) and storage (NFS provisioner). Used as a proving ground for platform engineering patterns before applying to client infrastructure.
+        Not a toy cluster. Talos Linux (immutable OS, zero SSH access), Cilium eBPF networking, ArgoCD App-of-Apps managing 19 live applications, Terraform-provisioned VMs, and Ansible bootstrapping — deployed end-to-end in 25 minutes. Every pattern I apply at work — GitOps, SOPS secrets, Velero DR, cert-manager — runs here first. It's how I know it actually works.
       </p>
       <div class="project-tech">
         <span class="tag">Proxmox</span>
@@ -602,11 +603,11 @@
         <div class="project-icon">📊</div>
         <div>
           <div class="project-name">KubeWise</div>
-          <div class="project-tagline">Kubernetes Cost & Performance Optimization</div>
+          <div class="project-tagline">Kubernetes cost visibility — advisory only, never auto-applies</div>
         </div>
       </div>
       <p class="project-desc">
-        Advisory-only Kubernetes right-sizing and cost optimization platform. Connects read-only to your cluster, detects over-provisioned workloads, estimates cost savings, and generates advisory patches — never auto-applies changes. Ships with a demo mode pre-seeded with realistic cluster data.
+        Most K8s cost tools either require too much trust or produce useless recommendations. KubeWise connects read-only to your cluster, runs a recommendation engine against real usage data, estimates dollar savings, and generates patches you review before applying. FastAPI backend, Next.js dashboard, Helm chart for self-hosted deployment, and a demo mode pre-seeded with 20+ realistic workloads so you can explore without a live cluster.
       </p>
       <div class="project-tech">
         <span class="tag">Python</span>
@@ -621,12 +622,12 @@
       <div class="project-header">
         <div class="project-icon">🚀</div>
         <div>
-          <div class="project-name">vercel-clone</div>
-          <div class="project-tagline">Self-hosted PaaS on Bare-metal Kubernetes</div>
+          <div class="project-name">spinup — Self-hosted PaaS</div>
+          <div class="project-tagline">Push to GitHub. Get a live URL. On your own Kubernetes cluster.</div>
         </div>
       </div>
       <p class="project-desc">
-        Replicates the Vercel deployment experience on a self-hosted Talos Linux Kubernetes cluster. Connect a GitHub repo, <code>git push</code>, get a live URL. Features multi-tenant isolation, per-app Postgres via CloudNativePG, Kaniko rootless builds, runtime log streaming, and a self-rebuilding control plane in Go.
+        Not a tutorial. A working push-to-deploy platform running on bare-metal Talos Kubernetes — the same thing Vercel sells, built from scratch. Go control plane, GitHub App webhooks with HMAC verification, Kaniko rootless image builds, per-tenant Postgres via CloudNativePG, Traefik routing, and Cloudflare external-dns automation. Multi-tenant, production-deployed, serving real traffic at spinup.in.
       </p>
       <div class="project-tech">
         <span class="tag">Go</span>
