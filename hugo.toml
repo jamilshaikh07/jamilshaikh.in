@@ -5,6 +5,7 @@ title = "Jamil Shaikh"
 [params]
   description = "Senior Site Reliability Engineer specializing in Kubernetes, multi-cloud infrastructure, and platform engineering."
   author = "Jamil Rafique Shaikh"
+  umami_id = "" # paste your Umami website ID here after signing up at cloud.umami.is
 
 [pagination]
   pagerSize = 10

@@ -282,4 +282,7 @@
   {{ if not .IsHome }}
   <style>{{ (resources.Get "css/blog.css" | minify).Content | safeCSS }}</style>
   {{ end }}
+  {{ with site.Params.umami_id }}
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="{{ . }}" data-domains="jamilshaikh.in"></script>
+  {{ end }}
 </head>
