@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "Jamil Shaikh"
 
 [params]
-  description = "Senior Site Reliability Engineer specializing in Kubernetes, multi-cloud infrastructure, and platform engineering."
+  description = "Senior SRE & Platform Engineer. Specialist in Talos Linux, multi-cluster Kubernetes, GitOps (ArgoCD/Flux), and AI-assisted reliability engineering. Available for contract and consulting."
   author = "Jamil Rafique Shaikh"
   umami_id = "bdc2275e-b88d-49dd-b53d-a52588da09ec"
 

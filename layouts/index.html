@@ -319,6 +319,77 @@
     .edu-item { flex-direction: column; gap: 4px; }
   }
 
+  /* ===== SERVICES ===== */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  .service-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    background: var(--bg-card);
+    transition: all var(--transition);
+  }
+
+  .service-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .service-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .service-name {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+
+  .service-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .availability-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--green-dim);
+    border: 1px solid var(--green);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+
+  .availability-banner .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .availability-banner strong { color: var(--green); }
+
   /* ===== PRINT ===== */
   @media print {
     .nav, .theme-toggle, .hero-actions, .footer { display: none; }
@@ -332,17 +403,22 @@
 <section class="hero">
   <div class="hero-status fade-in">
     <span class="dot"></span>
-    Open to opportunities
+    Available for Contract &amp; Consulting
   </div>
   <h1 class="fade-in">Jamil Rafique Shaikh</h1>
   <p class="hero-subtitle fade-in">
-    Senior SRE with 11 years across telecom, FinTech, and cloud-native SaaS. I design platforms that stay up,
-    build tools that automate the toil, and run a production-grade Kubernetes homelab where I practice what I preach.
+    Senior SRE &amp; Platform Engineer. 11 years in production — telecom, FinTech, cloud-native SaaS.
+    Specialist in Talos Linux, multi-cluster Kubernetes, GitOps with ArgoCD &amp; Flux, and AI-assisted reliability engineering.
+    Available for contract engagements and consulting.
   </p>
   <div class="hero-actions fade-in">
-    <a href="./Jamil_Shaikh_SRE_Resume.pdf" download class="btn btn-primary">
+    <a href="mailto:hi@jamilshaikh.in?subject=Consulting%20Enquiry" class="btn btn-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      Hire Me
+    </a>
+    <a href="./Jamil_Shaikh_SRE_Resume.pdf" download class="btn">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download Resume
+      Resume
     </a>
     <a href="https://github.com/jamilshaikh07" target="_blank" rel="noopener" class="btn">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -356,6 +432,67 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
       hi@jamilshaikh.in
     </a>
+  </div>
+</section>
+
+<!-- CONSULTING SERVICES -->
+<section class="section" id="consulting">
+  <div class="section-label">For Hire</div>
+  <div class="section-title">Consulting Services</div>
+  <div class="availability-banner">
+    <span class="dot"></span>
+    <span><strong>Currently available</strong> for contract engagements &mdash; remote, part-time or full-time. Reach me at <a href="mailto:hi@jamilshaikh.in" style="color:var(--green)">hi@jamilshaikh.in</a></span>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card fade-in">
+      <div class="service-icon">⚙️</div>
+      <div class="service-name">Talos Linux &amp; Kubernetes Migrations</div>
+      <p class="service-desc">
+        Migrating from Juju, RKE2, Rancher, or vanilla kubeadm to Talos Linux. I handle the full path: cluster design, node bootstrap, CNI configuration (Cilium + BGP), GitOps wiring with ArgoCD or Flux, and workload cutover with zero-downtime rollouts. Done this for multi-cluster setups with 5+ clusters.
+      </p>
+      <div class="service-tags">
+        <span class="tag">Talos Linux</span><span class="tag">Cilium</span><span class="tag">BGP</span>
+        <span class="tag">ArgoCD</span><span class="tag">FluxCD</span><span class="tag">Helm</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <div class="service-icon">🔁</div>
+      <div class="service-name">Multi-Cluster GitOps Architecture</div>
+      <p class="service-desc">
+        Design and implement GitOps at scale — app-of-apps patterns, fleet management, environment promotion, tenant isolation, and policy enforcement with Kyverno. Works across ArgoCD and FluxCD. Practical delivery, not slide-deck architecture.
+      </p>
+      <div class="service-tags">
+        <span class="tag">ArgoCD</span><span class="tag">FluxCD</span><span class="tag">Kyverno</span>
+        <span class="tag">Kustomize</span><span class="tag">KEDA</span><span class="tag">Multi-tenancy</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <div class="service-icon">📡</div>
+      <div class="service-name">Observability &amp; SRE Foundations</div>
+      <p class="service-desc">
+        Full LGTM stack buildout (Loki, Grafana, Tempo, Mimir / VictoriaMetrics), Alloy agents for log and metrics export, SLI/SLO definition, alert routing, and on-call runbooks. I also build AI-assisted SRE agents that watch your cluster, detect issues, and propose fixes automatically.
+      </p>
+      <div class="service-tags">
+        <span class="tag">VictoriaMetrics</span><span class="tag">Grafana</span><span class="tag">Loki</span>
+        <span class="tag">Alloy</span><span class="tag">Prometheus</span><span class="tag">SLO</span>
+      </div>
+    </div>
+
+    <div class="service-card fade-in">
+      <div class="service-icon">🏗️</div>
+      <div class="service-name">Platform Engineering &amp; IDP</div>
+      <p class="service-desc">
+        Build the developer platform your team needs — without the Backstage overhead. Internal tooling, self-service deployment APIs, MCP server integrations for AI-driven deployments, secrets management with HC Vault, private image registries with Harbor, and GitOps-native everything.
+      </p>
+      <div class="service-tags">
+        <span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">HC Vault</span>
+        <span class="tag">Harbor</span><span class="tag">Longhorn</span><span class="tag">MCP</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -373,10 +510,12 @@
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-category">Containers</div>
+      <div class="skill-category">Kubernetes</div>
       <div class="skill-tags">
-        <span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Helm</span>
-        <span class="tag">OpenShift</span><span class="tag">Talos Linux</span><span class="tag">Containerd</span>
+        <span class="tag">Talos Linux</span><span class="tag">Kubernetes</span><span class="tag">Helm</span>
+        <span class="tag">Cilium</span><span class="tag">BGP Cilium</span><span class="tag">Hubble</span>
+        <span class="tag">MetalLB</span><span class="tag">Kyverno</span><span class="tag">KEDA</span>
+        <span class="tag">Longhorn</span><span class="tag">OpenShift</span><span class="tag">Containerd</span>
       </div>
     </div>
     <div class="skill-row">
@@ -390,7 +529,7 @@
     <div class="skill-row">
       <div class="skill-category">GitOps & CI/CD</div>
       <div class="skill-tags">
-        <span class="tag">ArgoCD</span><span class="tag">FluxCD</span>
+        <span class="tag">ArgoCD</span><span class="tag">FluxCD</span><span class="tag">Kustomize</span>
         <span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span>
         <span class="tag">Jenkins</span><span class="tag">GitLab CI</span>
       </div>
@@ -398,8 +537,8 @@
     <div class="skill-row">
       <div class="skill-category">Observability</div>
       <div class="skill-tags">
-        <span class="tag">Prometheus</span><span class="tag">Grafana</span>
-        <span class="tag">Loki</span><span class="tag">Datadog</span>
+        <span class="tag">VictoriaMetrics</span><span class="tag">Prometheus</span><span class="tag">Grafana</span>
+        <span class="tag">Loki</span><span class="tag">Alloy</span><span class="tag">Datadog</span>
         <span class="tag">Sumo Logic</span><span class="tag">CloudWatch</span>
       </div>
     </div>
@@ -415,9 +554,8 @@
     <div class="skill-row">
       <div class="skill-category">Platform</div>
       <div class="skill-tags">
-        <span class="tag">Velero</span><span class="tag">SOPS</span>
-        <span class="tag">MetalLB</span><span class="tag">OpenStack</span>
-        <span class="tag">Proxmox</span>
+        <span class="tag">HC Vault</span><span class="tag">Harbor</span><span class="tag">Velero</span>
+        <span class="tag">CloudNativePG</span><span class="tag">OpenStack</span><span class="tag">Proxmox</span>
       </div>
     </div>
     <div class="skill-row">
@@ -554,20 +692,42 @@
         </div>
       </div>
       <p class="project-desc">
-        Not a toy cluster. Talos Linux (immutable OS, zero SSH access), Cilium eBPF networking, ArgoCD App-of-Apps managing 19 live applications, Terraform-provisioned VMs, and Ansible bootstrapping — deployed end-to-end in 25 minutes. Every pattern I apply at work — GitOps, SOPS secrets, Velero DR, cert-manager — runs here first. It's how I know it actually works.
+        Not a toy cluster. Talos Linux (immutable OS, zero SSH access), Cilium eBPF networking with BGP, ArgoCD App-of-Apps managing 27 live applications alongside FluxCD, Terraform-provisioned VMs on Proxmox, and Ansible bootstrapping — deployed end-to-end in 25 minutes. Running real products: a self-hosted PaaS (spinup.in), an AI SRE agent (openclaw), BPL production app, and Mattermost. Every pattern I deliver to clients runs here first.
       </p>
       <div class="project-tech">
         <span class="tag">Proxmox</span>
         <span class="tag">Talos Linux</span>
         <span class="tag">Kubernetes</span>
         <span class="tag">ArgoCD</span>
-        <span class="tag">Prometheus</span>
-        <span class="tag">NFS</span>
+        <span class="tag">FluxCD</span>
+        <span class="tag">Cilium</span>
+        <span class="tag">VictoriaMetrics</span>
       </div>
       <a href="https://github.com/jamilshaikh07/talos-proxmox-gitops" target="_blank" rel="noopener" class="project-link">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         View on GitHub →
       </a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div class="project-icon">🤖</div>
+        <div>
+          <div class="project-name">openclaw — AI SRE Agent</div>
+          <div class="project-tagline">Cluster-watching AI that posts alerts, remediates, and writes postmortems</div>
+        </div>
+      </div>
+      <p class="project-desc">
+        An AI Site Reliability Engineer running as a cron-based agent on Kubernetes. Monitors cluster health, detects CrashLoopBackOff and pod failures, correlates incidents across namespaces, auto-deletes stuck pods within policy, and posts structured alerts to Mattermost. Phase 3 adds runbook intelligence and capacity forecasting. Powered by Claude Haiku to keep inference costs near zero.
+      </p>
+      <div class="project-tech">
+        <span class="tag">Python</span>
+        <span class="tag">Kubernetes</span>
+        <span class="tag">Claude AI</span>
+        <span class="tag">Mattermost</span>
+        <span class="tag">ArgoCD</span>
+        <span class="tag">CronJob</span>
+      </div>
     </div>
 
     <div class="project-card fade-in">
