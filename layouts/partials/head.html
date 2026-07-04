@@ -200,6 +200,29 @@
         margin-left: 0;
         margin-top: 10px;
       }
+      
+      .nav-book-call {
+        display: inline-block;
+        margin-top: 24px;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        background: var(--green-dim);
+        border: 1px solid var(--green);
+        color: var(--green) !important;
+        text-align: center;
+        font-weight: 600;
+        transition: all var(--transition);
+        width: 100%;
+      }
+      
+      .nav-book-call:hover {
+        background: var(--green);
+        color: #fff !important;
+        text-decoration: none;
+        box-shadow: 0 0 15px rgba(63, 185, 80, 0.2);
+      }
     }
 
     /* ===== NAV (Mobile Fallback) ===== */
@@ -292,6 +315,10 @@
     .theme-toggle:hover {
       border-color: var(--accent);
       background: var(--accent-glow);
+    }
+
+    .nav-book-call {
+      display: none;
     }
 
     /* ===== BUTTONS ===== */
