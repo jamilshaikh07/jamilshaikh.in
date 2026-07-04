@@ -1,4 +1,8 @@
 <head>
+  {{ if .Params.external_link }}
+  <meta http-equiv="refresh" content="0; url={{ .Params.external_link }}">
+  <script>window.location.href = "{{ .Params.external_link }}";</script>
+  {{ end }}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ if .IsHome }}Jamil Shaikh - Senior SRE & DevOps Engineer{{ else }}{{ .Title }} - Jamil Shaikh{{ end }}</title>

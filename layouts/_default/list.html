@@ -6,7 +6,7 @@
 
 <div class="blog-list">
   {{ range .Pages.ByDate.Reverse }}
-  <a href="{{ .RelPermalink }}" class="blog-post-card">
+  <a href="{{ with .Params.external_link }}{{ . }}{{ else }}{{ .RelPermalink }}{{ end }}" class="blog-post-card" {{ if .Params.external_link }}target="_blank" rel="noopener"{{ end }}>
     <div class="post-date">{{ .Date.Format "Jan 2, 2006" }}</div>
     <div class="post-title">{{ .Title }}</div>
     {{ with .Params.summary }}
