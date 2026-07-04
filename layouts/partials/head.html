@@ -102,7 +102,103 @@
       padding: 0 24px;
     }
 
-    /* ===== NAV ===== */
+    /* ===== LAYOUT & SIDEBAR (Mitchell-inspired) ===== */
+    .site-wrapper {
+      width: 100%;
+      margin: 0 auto;
+    }
+    
+    .brand-avatar {
+      display: none;
+    }
+
+    @media (min-width: 769px) {
+      .site-wrapper {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 60px;
+        max-width: 1060px;
+        margin: 0 auto;
+        padding: 80px 24px;
+        align-items: start;
+      }
+      
+      .main-content {
+        max-width: 760px;
+        padding: 0;
+      }
+      
+      .nav {
+        position: sticky;
+        top: 80px;
+        z-index: 10;
+        background: transparent !important;
+        border-bottom: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+      
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 40px;
+        padding: 0;
+        width: 100%;
+      }
+      
+      .nav-brand a {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      .brand-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--green-dim);
+        border: 2px solid var(--green);
+        color: var(--green);
+        font-family: var(--font-mono);
+        font-weight: bold;
+        font-size: 16px;
+        letter-spacing: 0.05em;
+        box-shadow: 0 0 15px rgba(63, 185, 80, 0.15);
+      }
+      
+      .brand-terminal-title {
+        display: none;
+      }
+      
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        width: 100%;
+      }
+      
+      .nav-links a {
+        padding: 4px 0;
+        font-size: 14px;
+        display: block;
+        border-radius: 0;
+        background: transparent !important;
+      }
+      
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+      
+      .theme-toggle {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+
+    /* ===== NAV (Mobile Fallback) ===== */
     .nav {
       position: sticky;
       top: 0;

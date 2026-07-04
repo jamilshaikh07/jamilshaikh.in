@@ -2,11 +2,13 @@
 <html lang="en" data-theme="dark">
 {{ partial "head.html" . }}
 <body>
-  {{ partial "nav.html" . }}
+  <div class="site-wrapper">
+    {{ partial "nav.html" . }}
 
-  <main class="container">
-    {{ block "main" . }}{{ end }}
-  </main>
+    <main class="main-content">
+      {{ block "main" . }}{{ end }}
+    </main>
+  </div>
 
   {{ partial "footer.html" . }}
   {{ block "scripts" . }}{{ end }}
