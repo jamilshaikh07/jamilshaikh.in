@@ -25,4 +25,4 @@ title = "Jamil Shaikh"
     guessSyntax = true
   [markup.goldmark]
     [markup.goldmark.renderer]
-      unsafe = false
+      unsafe = true
