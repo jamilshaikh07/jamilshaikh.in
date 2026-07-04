@@ -1,13 +1,13 @@
 ---
 title: "I Gave My Homelab a Junior SRE. It Works 24/7 and Costs Me Nothing."
 date: 2026-02-21
-summary: "How I set up an AI agent on a dusty i3 box to monitor my Talos Kubernetes cluster, triage alerts, and post reports to Slack — for free."
+summary: "How I set up an AI agent on a dusty i3 box to monitor my Talos Kubernetes cluster, triage alerts, and post reports to Slack - for free."
 tags: ["SRE", "Kubernetes", "AI", "OpenClaw", "Homelab", "Automation"]
 ---
 
 I didn't build anything revolutionary. I didn't invent a new framework or write a thousand lines of code.
 
-I just gave my homelab an AI agent that does the boring stuff — the health checks, the alert triage, the "is anything broken right now?" — and posts the answers to Slack like a teammate would.
+I just gave my homelab an AI agent that does the boring stuff - the health checks, the alert triage, the "is anything broken right now?" - and posts the answers to Slack like a teammate would.
 
 And honestly? It feels like I hired someone.
 
@@ -15,7 +15,7 @@ And honestly? It feels like I hired someone.
 
 ## Why I Did This
 
-I'm a Senior SRE at InfraCloud Technologies. By day, I manage production infrastructure. By night (and weekends), I run a homelab — a 5-node Talos Kubernetes cluster on Proxmox, 22 apps deployed through ArgoCD, the whole nine yards.
+I'm a Senior SRE at InfraCloud Technologies. By day, I manage production infrastructure. By night (and weekends), I run a homelab - a 5-node Talos Kubernetes cluster on Proxmox, 22 apps deployed through ArgoCD, the whole nine yards.
 
 The problem with homelabs is that they're production for one person. When something breaks at 2 AM, there's no on-call rotation. There's no junior engineer to check the nodes. There's just me, waking up to a dead service and spending 20 minutes figuring out what happened while I was asleep.
 
@@ -41,27 +41,27 @@ No fancy ML pipeline. No custom model training. No Kubernetes operator for AI. J
 
 When I first got it working, the Slack messages looked like this:
 
-![Before — plain text, no formatting, no structure. Just raw output dumped into Slack.](images/01-before-plain-slack.png)
+![Before - plain text, no formatting, no structure. Just raw output dumped into Slack.](images/01-before-plain-slack.png)
 
-Plain text. No structure. No indicators. Just a wall of text that your eyes glaze over — basically the same experience as reading raw `kubectl` output. Not exactly the "junior SRE teammate" vibe I was going for.
+Plain text. No structure. No indicators. Just a wall of text that your eyes glaze over - basically the same experience as reading raw `kubectl` output. Not exactly the "junior SRE teammate" vibe I was going for.
 
 ### Then I Fixed the Prompts
 
-The formatting quality comes entirely from the prompt. I gave each agent an exact Slack template — emoji indicators, bold headers, code blocks, blockquotes. Even a small free model follows it perfectly.
+The formatting quality comes entirely from the prompt. I gave each agent an exact Slack template - emoji indicators, bold headers, code blocks, blockquotes. Even a small free model follows it perfectly.
 
 Here's what `#devops` looks like now:
 
-![After — rich Slack formatting with emoji indicators, bold headers, per-node metrics, and structured reports.](images/02-after-rich-slack.png)
+![After - rich Slack formatting with emoji indicators, bold headers, per-node metrics, and structured reports.](images/02-after-rich-slack.png)
 
 Same data. Same model. Completely different experience. That's the ArgoCD drift report catching 5 out-of-sync apps, followed by a cluster health report with per-node CPU and memory usage.
 
 And here's a closer look at the ArgoCD drift detection:
 
-![ArgoCD drift report — emoji indicators, app-level sync status, and a clear count of apps needing attention.](images/03-argocd-drift.png)
+![ArgoCD drift report - emoji indicators, app-level sync status, and a clear count of apps needing attention.](images/03-argocd-drift.png)
 
 These aren't templated Alertmanager notifications. These are an AI agent running real commands against my cluster, interpreting the output, and writing me a report. Every 15 minutes. Automatically.
 
-When something's wrong, it doesn't just say "alert firing." It investigates — runs `kubectl describe`, checks logs, looks at events — and tells me what it found. Like a junior SRE would.
+When something's wrong, it doesn't just say "alert firing." It investigates - runs `kubectl describe`, checks logs, looks at events - and tells me what it found. Like a junior SRE would.
 
 ---
 
@@ -81,7 +81,7 @@ I took a box that was collecting dust:
 ```
 Debian 13 (Trixie)
 └── OpenClaw 2026.2.17
-    ├── Slack (Socket Mode — no public URL needed)
+    ├── Slack (Socket Mode - no public URL needed)
     ├── kubectl + talosctl + helm
     └── 6 scheduled cron jobs
 ```
@@ -94,7 +94,7 @@ openclaw onboard
 # Follow the wizard. Done.
 ```
 
-I connected it to a Slack workspace with four channels — `#devops`, `#alerts`, `#news`, `#ai` — and started building cron jobs.
+I connected it to a Slack workspace with four channels - `#devops`, `#alerts`, `#news`, `#ai` - and started building cron jobs.
 
 ---
 
@@ -102,19 +102,19 @@ I connected it to a Slack workspace with four channels — `#devops`, `#alerts`,
 
 I think of each cron job as a little agent with one job:
 
-**Cluster Watcher** — Checks nodes, pods, resource usage → every 15 min → `#devops`
+**Cluster Watcher** - Checks nodes, pods, resource usage → every 15 min → `#devops`
 
-**Alert Sentinel** — Catches CrashLoops, OOMKills, node failures → every 30 min → `#alerts`
+**Alert Sentinel** - Catches CrashLoops, OOMKills, node failures → every 30 min → `#alerts`
 
-**ArgoCD Auditor** — Detects sync drift across 22 apps → every 30 min → `#devops`
+**ArgoCD Auditor** - Detects sync drift across 22 apps → every 30 min → `#devops`
 
-**Talos Inspector** — Monitors node health, etcd, memory, disk → every hour → `#devops`
+**Talos Inspector** - Monitors node health, etcd, memory, disk → every hour → `#devops`
 
-**AI News Curator** — Morning AI industry digest → 8:00 AM IST → `#ai`
+**AI News Curator** - Morning AI industry digest → 8:00 AM IST → `#ai`
 
-**Tech News Curator** — K8s/CNCF/DevOps/Security digest → 8:15 AM IST → `#news`
+**Tech News Curator** - K8s/CNCF/DevOps/Security digest → 8:15 AM IST → `#news`
 
-The monitoring agents are silent when everything's fine. No "all clear" spam every 15 minutes. They only speak up when something needs attention — or when they run their periodic health summary.
+The monitoring agents are silent when everything's fine. No "all clear" spam every 15 minutes. They only speak up when something needs attention - or when they run their periodic health summary.
 
 The Alert Sentinel is my favorite. It checks for broken pods, and when it finds one, it doesn't just list it. It investigates:
 
@@ -154,7 +154,7 @@ openclaw cron add \
 
 The key insight: use `--no-deliver` and have the agent call `openclaw message send` directly from its prompt. The agent decides what to say, formats it, and posts it as a new top-level message. Full control.
 
-If you're setting up OpenClaw crons and wondering why messages land in threads instead of the channel — this is the fix.
+If you're setting up OpenClaw crons and wondering why messages land in threads instead of the channel - this is the fix.
 
 ---
 
@@ -162,7 +162,7 @@ If you're setting up OpenClaw crons and wondering why messages land in threads i
 
 Here's the part that humbled me.
 
-I set everything up with **Claude Opus 4.6** — the most capable (and most expensive) model available. Because why not? I wanted the best.
+I set everything up with **Claude Opus 4.6** - the most capable (and most expensive) model available. Because why not? I wanted the best.
 
 Then I looked at the numbers:
 
@@ -182,15 +182,15 @@ That's like hiring a principal engineer to check if the office lights are on.
 ### The Final Setup
 
 **Moved to Gemini 2.5 Flash (FREE):**
-- Cluster monitoring — 96 calls/day → **$0**
-- Alert checking — 48 calls/day → **$0**
-- ArgoCD audit — 48 calls/day → **$0**
-- Talos health — 24 calls/day → **$0**
+- Cluster monitoring - 96 calls/day → **$0**
+- Alert checking - 48 calls/day → **$0**
+- ArgoCD audit - 48 calls/day → **$0**
+- Talos health - 24 calls/day → **$0**
 
 **Kept on Claude Opus 4.6 (Paid):**
-- AI news digest — 1 call/day
-- Tech news digest — 1 call/day
-- Interactive Slack conversations — on demand
+- AI news digest - 1 call/day
+- Tech news digest - 1 call/day
+- Interactive Slack conversations - on demand
 
 **216 daily monitoring calls moved to free.** Claude only runs for the 2 morning news digests (which actually need reasoning and web search) and my interactive Slack conversations.
 
@@ -241,13 +241,13 @@ No router needed. No middleware. Just tell each job which model to use.
 
 ## What This Feels Like
 
-I'll be honest — I didn't expect it to feel this different.
+I'll be honest - I didn't expect it to feel this different.
 
 I've had Prometheus alerts for years. I've had Grafana dashboards. I've had scripts that email me when something's wrong.
 
 But there's something about opening Slack in the morning and seeing a formatted report that says "5 of 22 ArgoCD apps need attention, here are the ones drifting" that feels like having a teammate. Not a monitoring tool. A teammate.
 
-When my `cloudflared` pod was crash-looping, the bot didn't just fire an alert and go silent. It ran `kubectl describe`, found the missing secret, and said "here's what's wrong and here's how to fix it." I still had to approve the fix myself — the agents are read-only, they never auto-remediate — but the investigation was already done.
+When my `cloudflared` pod was crash-looping, the bot didn't just fire an alert and go silent. It ran `kubectl describe`, found the missing secret, and said "here's what's wrong and here's how to fix it." I still had to approve the fix myself - the agents are read-only, they never auto-remediate - but the investigation was already done.
 
 That saved me 15 minutes of debugging. Multiply that by every incident, every day.
 
@@ -265,7 +265,7 @@ This isn't a replacement for proper monitoring. I still have Prometheus and Aler
 
 **4. Not every task needs a reasoning model.** Running `kubectl get nodes` and formatting the output doesn't need Claude Opus. It needs a model that can follow instructions and call tools. Gemini Flash does that perfectly at zero cost.
 
-**5. Read-only agents are the right default.** My agents can investigate anything — logs, events, resource usage. But they can never `kubectl delete`, `argocd app sync`, or `talosctl reboot`. They suggest fixes. I approve them. This is the right boundary for now.
+**5. Read-only agents are the right default.** My agents can investigate anything - logs, events, resource usage. But they can never `kubectl delete`, `argocd app sync`, or `talosctl reboot`. They suggest fixes. I approve them. This is the right boundary for now.
 
 ---
 
