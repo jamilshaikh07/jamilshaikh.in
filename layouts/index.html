@@ -397,6 +397,83 @@
     body { color: #000; background: #fff; }
     .hero { padding: 24px 0 16px; }
   }
+
+  /* ===== RETRO TERMINAL ===== */
+  .terminal-window {
+    background: #080a08;
+    border: 1px solid #1f3a20;
+    border-radius: 8px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(57, 255, 20, 0.1);
+    margin: 28px 0;
+    overflow: hidden;
+    font-family: var(--font-mono);
+  }
+  
+  .terminal-header {
+    background: #111511;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #1f3a20;
+  }
+  
+  .terminal-buttons {
+    display: flex;
+    gap: 6px;
+  }
+  
+  .terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    opacity: 0.8;
+  }
+  
+  .tb-red { background: #ff5f56; }
+  .tb-yellow { background: #ffbd2e; }
+  .tb-green { background: #27c93f; }
+  
+  .terminal-title {
+    color: #4a6a4c;
+    font-size: 12px;
+    margin: 0 auto;
+    transform: translateX(-18px);
+    letter-spacing: 0.05em;
+  }
+  
+  .terminal-body {
+    padding: 18px;
+    color: #39ff14;
+    font-size: 13px;
+    line-height: 1.6;
+    height: 250px;
+    overflow-y: auto;
+    position: relative;
+    background-image: radial-gradient(circle, rgba(16, 28, 16, 0.4) 0%, #030503 100%);
+    animation: terminal-flicker 0.15s infinite;
+  }
+  
+  .terminal-body::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .terminal-text {
+    white-space: pre-wrap;
+    margin: 0;
+  }
+
+  @keyframes terminal-flicker {
+    0% { opacity: 0.99; }
+    50% { opacity: 1; }
+    100% { opacity: 0.98; }
+  }
 </style>
 
 <!-- HERO -->
@@ -411,6 +488,85 @@
     Specialist in Talos Linux, multi-cluster Kubernetes, GitOps with ArgoCD &amp; Flux, and AI-assisted reliability engineering.
     Available for contract engagements and consulting.
   </p>
+
+  <!-- RETRO TERMINAL WIDGET -->
+  <div class="terminal-window fade-in">
+    <div class="terminal-header">
+      <div class="terminal-buttons">
+        <div class="terminal-button tb-red"></div>
+        <div class="terminal-button tb-yellow"></div>
+        <div class="terminal-button tb-green"></div>
+      </div>
+      <div class="terminal-title">sre-ops@homelab:~</div>
+    </div>
+    <div class="terminal-body" id="terminal-screen">
+      <pre class="terminal-text" id="terminal-output"></pre>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const terminal = document.getElementById("terminal-output");
+      const screen = document.getElementById("terminal-screen");
+      const lines = [
+        { text: "jamil-shaikh@homelab:~$ talosctl bootstrap --nodes 192.168.10.11", delay: 600, type: true },
+        { text: "[INFO] connecting to node 192.168.10.11...", delay: 500 },
+        { text: "[INFO] uploading configurations & secret manifests...", delay: 600 },
+        { text: "[INFO] waiting for boot sequence to complete...", delay: 900 },
+        { text: "[OK] node 192.168.10.11 is online and healthy!", delay: 400 },
+        { text: "jamil-shaikh@homelab:~$ kubectl get nodes", delay: 1000, type: true },
+        { text: "NAME               STATUS   ROLES           AGE   VERSION\nhomelab-node-01    Ready    control-plane   32d   v1.29.2\nhomelab-node-02    Ready    worker          32d   v1.29.2\nhomelab-node-03    Ready    worker          32d   v1.29.2", delay: 300 },
+        { text: "jamil-shaikh@homelab:~$ flux get kustomizations", delay: 800, type: true },
+        { text: "NAME            READY   MESSAGE                                REVISION\ninfrastructure  True    Applied revision: main@sha1:e7b39a2f   main@sha1:e7b39a2f\napps            True    Applied revision: main@sha1:e7b39a2f   main@sha1:e7b39a2f", delay: 300 },
+        { text: "jamil-shaikh@homelab:~$ argo-cd sync app/production-ingress", delay: 1000, type: true },
+        { text: "[INFO] initiating sync of resources in namespace 'traefik-system'...\n[INFO] updating deployment/traefik-ingress...\n[OK] sync completed successfully. All replicas healthy.", delay: 400 },
+        { text: "jamil-shaikh@homelab:~$ _", delay: 1200, type: false }
+      ];
+
+      let currentLineIndex = 0;
+
+      function typeWriter(text, i, cb) {
+        if (i < text.length) {
+          terminal.innerHTML = terminal.innerHTML.slice(0, -1) + text.charAt(i) + "_";
+          screen.scrollTop = screen.scrollHeight;
+          setTimeout(() => typeWriter(text, i + 1, cb), 20 + Math.random() * 20);
+        } else {
+          terminal.innerHTML = terminal.innerHTML.slice(0, -1);
+          cb();
+        }
+      }
+
+      function printNextLine() {
+        if (currentLineIndex >= lines.length) {
+          setTimeout(() => {
+            terminal.innerHTML = "";
+            currentLineIndex = 0;
+            printNextLine();
+          }, 6000);
+          return;
+        }
+
+        const currentLine = lines[currentLineIndex];
+        setTimeout(() => {
+          if (currentLine.type) {
+            terminal.innerHTML += (terminal.innerHTML ? "\n" : "") + "";
+            typeWriter(currentLine.text, 0, () => {
+              currentLineIndex++;
+              printNextLine();
+            });
+          } else {
+            terminal.innerHTML += (terminal.innerHTML ? "\n" : "") + currentLine.text;
+            screen.scrollTop = screen.scrollHeight;
+            currentLineIndex++;
+            printNextLine();
+          }
+        }, currentLine.delay);
+      }
+
+      printNextLine();
+    });
+  </script>
+
   <div class="hero-actions fade-in">
     <a href="mailto:hi@jamilshaikh.in?subject=Consulting%20Enquiry" class="btn btn-primary">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
