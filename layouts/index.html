@@ -969,7 +969,11 @@
       width: 100%;
       height: auto;
       display: block;
-      min-width: 800px;
+    }
+    @media (max-width: 768px) {
+      .pipeline-svg {
+        min-width: 700px;
+      }
     }
     @keyframes flow-fast {
       to { stroke-dashoffset: -40; }
