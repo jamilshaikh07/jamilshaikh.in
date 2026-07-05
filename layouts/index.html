@@ -950,6 +950,174 @@
   </div>
 </section>
 
+<!-- Platform Architecture Flow Diagram -->
+<section class="section" id="pipeline-visualization">
+  <div class="section-label">System Architecture</div>
+  <div class="section-title">Delivery &amp; Auto-Remediation Pipeline</div>
+  
+  <style>
+    .pipeline-container {
+      background: #0b0d10;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 24px;
+      overflow-x: auto;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+    .pipeline-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      min-width: 800px;
+    }
+    @keyframes flow-fast {
+      to { stroke-dashoffset: -40; }
+    }
+    @keyframes flow-medium {
+      to { stroke-dashoffset: -50; }
+    }
+    @keyframes flow-slow {
+      to { stroke-dashoffset: -60; }
+    }
+    .flow-path-fast {
+      animation: flow-fast 2s linear infinite;
+    }
+    .flow-path-medium {
+      animation: flow-medium 3.5s linear infinite;
+    }
+    .flow-path-slow {
+      animation: flow-slow 5s linear infinite;
+    }
+    .flow-feedback {
+      animation: flow-slow 8s linear infinite;
+    }
+  </style>
+
+  <div class="pipeline-container fade-in">
+    <svg viewBox="0 0 1000 450" class="pipeline-svg">
+      <defs>
+        <!-- Glow filters -->
+        <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#3fb950" flood-opacity="0.6"/>
+        </filter>
+        <filter id="glow-orange" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#f0883e" flood-opacity="0.6"/>
+        </filter>
+        <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ab7df8" flood-opacity="0.6"/>
+        </filter>
+        
+        <!-- Background grid pattern -->
+        <pattern id="diagram-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
+        </pattern>
+      </defs>
+
+      <!-- Background Grid -->
+      <rect width="1000" height="450" fill="url(#diagram-grid)" rx="12"/>
+      
+      <!-- Connectors / Paths -->
+      <!-- Main Push to controller -->
+      <path d="M 120 225 L 220 225" stroke="#21262d" stroke-width="3" fill="none" />
+      <path d="M 120 225 L 220 225" stroke="#3fb950" stroke-width="3" fill="none" stroke-dasharray="8 12" class="flow-path-fast" />
+
+      <!-- Controller branch split -->
+      <!-- Branch 1: GitOps Deploy (Green - Top) -->
+      <path d="M 280 225 L 350 225 L 350 110 L 460 110" stroke="#21262d" stroke-width="3" fill="none" />
+      <path d="M 280 225 L 350 225 L 350 110 L 460 110" stroke="#3fb950" stroke-width="3" fill="none" stroke-dasharray="8 12" class="flow-path-fast" />
+      <path d="M 580 110 L 680 110" stroke="#21262d" stroke-width="3" fill="none" />
+      <path d="M 580 110 L 680 110" stroke="#3fb950" stroke-width="3" fill="none" stroke-dasharray="8 12" class="flow-path-fast" />
+      <path d="M 800 110 L 880 110" stroke="#21262d" stroke-width="3" fill="none" />
+      <path d="M 800 110 L 880 110" stroke="#3fb950" stroke-width="3" fill="none" stroke-dasharray="8 12" class="flow-path-fast" />
+      
+      <!-- Branch 2: CVE Remediation (Orange - Middle) -->
+      <path d="M 280 225 L 460 225" stroke="#21262d" stroke-width="3" fill="none" />
+      <path d="M 280 225 L 460 225" stroke="#f0883e" stroke-width="3" fill="none" stroke-dasharray="8 12" class="flow-path-medium" />
+      <path d="M 580 225 L 680 225" stroke="#21262d" stroke-width="3" fill="none" />
+      <path d="M 580 225 L 680 225" stroke="#f0883e" stroke-width="3" fill="none" stroke-dasharray="8 12" class="flow-path-medium" />
+      <path d="M 800 225 L 880 225" stroke="#21262d" stroke-width="3" fill="none" />
+      <path d="M 800 225 L 880 225" stroke="#f0883e" stroke-width="3" fill="none" stroke-dasharray="8 12" class="flow-path-medium" />
+      
+      <!-- Branch 3: AI SRE Auto-Heal (Purple - Bottom) -->
+      <path d="M 280 225 L 350 225 L 350 340 L 460 340" stroke="#21262d" stroke-width="3" fill="none" />
+      <path d="M 280 225 L 350 225 L 350 340 L 460 340" stroke="#ab7df8" stroke-width="3" fill="none" stroke-dasharray="8 12" class="flow-path-slow" />
+      <path d="M 580 340 L 680 340" stroke="#21262d" stroke-width="3" fill="none" />
+      <path d="M 580 340 L 680 340" stroke="#ab7df8" stroke-width="3" fill="none" stroke-dasharray="8 12" class="flow-path-slow" />
+      <path d="M 800 340 L 880 340" stroke="#21262d" stroke-width="3" fill="none" />
+      <path d="M 800 340 L 880 340" stroke="#ab7df8" stroke-width="3" fill="none" stroke-dasharray="8 12" class="flow-path-slow" />
+      
+      <!-- Feedback loop to push -->
+      <path d="M 940 370 L 940 410 L 70 410 L 70 270" stroke="#21262d" stroke-width="2" fill="none" />
+      <path d="M 940 370 L 940 410 L 70 410 L 70 270" stroke="#ab7df8" stroke-width="2" fill="none" stroke-dasharray="6 8" class="flow-feedback" />
+
+      <!-- Nodes -->
+      <!-- 1. Source: GIT PUSH -->
+      <circle cx="70" cy="225" r="45" fill="#0d1117" stroke="#3fb950" stroke-width="3" filter="url(#glow-green)"/>
+      <text x="70" y="220" fill="#3fb950" font-family="var(--font-mono)" font-size="12" font-weight="bold" text-anchor="middle">GIT PUSH</text>
+      <text x="70" y="236" fill="#888" font-family="var(--font-mono)" font-size="9" text-anchor="middle">webhook</text>
+
+      <!-- 2. Controller: GitOps Engine -->
+      <polygon points="250,185 295,225 250,265 205,225" fill="#161b22" stroke="#4a5568" stroke-width="2" />
+      <text x="250" y="222" fill="#fff" font-family="var(--font-mono)" font-size="10" font-weight="bold" text-anchor="middle">GITOPS</text>
+      <text x="250" y="235" fill="#8b949e" font-family="var(--font-mono)" font-size="9" text-anchor="middle">Engine</text>
+
+      <!-- PATH A NODES (Green - Top) -->
+      <!-- A1. KANIKO BUILD -->
+      <rect x="460" y="85" width="120" height="50" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2" />
+      <text x="520" y="110" fill="#3fb950" font-family="var(--font-mono)" font-size="11" font-weight="bold" text-anchor="middle">KANIKO BUILD</text>
+      <text x="520" y="124" fill="#8b949e" font-family="var(--font-mono)" font-size="9" text-anchor="middle">Rootless Build</text>
+
+      <!-- A2. TRAEFIK ROUTE -->
+      <rect x="680" y="85" width="120" height="50" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2" />
+      <text x="740" y="110" fill="#3fb950" font-family="var(--font-mono)" font-size="11" font-weight="bold" text-anchor="middle">TRAEFIK ROUTE</text>
+      <text x="740" y="124" fill="#8b949e" font-family="var(--font-mono)" font-size="9" text-anchor="middle">IngressRoute</text>
+
+      <!-- A3. LIVE PORTFOLIO -->
+      <rect x="880" y="80" width="100" height="60" rx="8" fill="#131c16" stroke="#3fb950" stroke-width="3" filter="url(#glow-green)" />
+      <text x="930" y="108" fill="#3fb950" font-family="var(--font-mono)" font-size="11" font-weight="bold" text-anchor="middle">✔ DEPLOYED</text>
+      <text x="930" y="122" fill="#888" font-family="var(--font-mono)" font-size="9" text-anchor="middle">Live PaaS URL</text>
+
+      <!-- PATH B NODES (Orange - Middle) -->
+      <!-- B1. AUTOFIX DOJO -->
+      <rect x="460" y="200" width="120" height="50" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2" />
+      <text x="520" y="225" fill="#f0883e" font-family="var(--font-mono)" font-size="11" font-weight="bold" text-anchor="middle">AUTOFIX DOJO</text>
+      <text x="520" y="239" fill="#8b949e" font-family="var(--font-mono)" font-size="9" text-anchor="middle">CVE Remediator</text>
+
+      <!-- B2. CREATE PR -->
+      <rect x="680" y="200" width="120" height="50" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="2" />
+      <text x="740" y="225" fill="#f0883e" font-family="var(--font-mono)" font-size="11" font-weight="bold" text-anchor="middle">CREATE PR</text>
+      <text x="740" y="239" fill="#8b949e" font-family="var(--font-mono)" font-size="9" text-anchor="middle">GitHub/GitLab API</text>
+
+      <!-- B3. AUTO SYNC -->
+      <rect x="880" y="200" width="100" height="50" rx="8" fill="#221813" stroke="#f0883e" stroke-width="2" filter="url(#glow-orange)" />
+      <text x="930" y="225" fill="#f0883e" font-family="var(--font-mono)" font-size="11" font-weight="bold" text-anchor="middle">AUTO-SYNC</text>
+      <text x="930" y="239" fill="#888" font-family="var(--font-mono)" font-size="9" text-anchor="middle">GitOps Reconcile</text>
+
+      <!-- PATH C NODES (Purple - Bottom) -->
+      <!-- C1. OPENCLAW AI SRE -->
+      <rect x="460" y="315" width="120" height="50" rx="8" fill="#161b22" stroke="#ab7df8" stroke-width="2" />
+      <text x="520" y="340" fill="#ab7df8" font-family="var(--font-mono)" font-size="11" font-weight="bold" text-anchor="middle">OPENCLAW AI</text>
+      <text x="520" y="354" fill="#8b949e" font-family="var(--font-mono)" font-size="9" text-anchor="middle">Log Watcher</text>
+
+      <!-- C2. LOG ANALYSER -->
+      <rect x="680" y="315" width="120" height="50" rx="8" fill="#161b22" stroke="#ab7df8" stroke-width="2" />
+      <text x="740" y="340" fill="#ab7df8" font-family="var(--font-mono)" font-size="11" font-weight="bold" text-anchor="middle">ANALYSE LOGS</text>
+      <text x="740" y="354" fill="#8b949e" font-family="var(--font-mono)" font-size="9" text-anchor="middle">Loki &amp; Claude LLM</text>
+
+      <!-- C3. AUTO HEAL -->
+      <rect x="880" y="310" width="100" height="60" rx="8" fill="#1c1328" stroke="#ab7df8" stroke-width="2" filter="url(#glow-purple)" />
+      <text x="930" y="338" fill="#ab7df8" font-family="var(--font-mono)" font-size="11" font-weight="bold" text-anchor="middle">AUTO-HEAL</text>
+      <text x="930" y="352" fill="#888" font-family="var(--font-mono)" font-size="9" text-anchor="middle">Slack/Mattermost</text>
+
+      <!-- PATH LABELS / METRICS -->
+      <text x="355" y="145" fill="#3fb950" font-family="var(--font-mono)" font-size="9" font-weight="bold">GitOps Deploy</text>
+      <text x="355" y="212" fill="#f0883e" font-family="var(--font-mono)" font-size="9" font-weight="bold">Vulnerability Scan</text>
+      <text x="355" y="295" fill="#ab7df8" font-family="var(--font-mono)" font-size="9" font-weight="bold">Anomaly Detected</text>
+    </svg>
+  </div>
+</section>
+
 <!-- CERTIFICATIONS -->
 <section class="section" id="certifications">
   <div class="section-label">Verified Credentials</div>
