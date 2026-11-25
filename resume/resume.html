@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Jamil Rafique Shaikh - Resume</title>
+<style>
+@page { size: A4; margin: 12mm 14mm; }
+* { box-sizing: border-box; }
+body { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 9.4pt; line-height: 1.36; color: #111; margin: 0; }
+h1 { font-size: 19pt; margin: 0; letter-spacing: .5px; }
+.sub { font-size: 10pt; color: #333; margin: 1px 0 2px; }
+.contact { font-size: 8.8pt; color: #333; margin-bottom: 6px; }
+h2 { font-size: 10pt; letter-spacing: 1.2px; text-transform: uppercase; border-bottom: 1.2px solid #111; padding-bottom: 1px; margin: 9px 0 4px; }
+.job { margin: 5px 0 1px; display: flex; justify-content: space-between; font-weight: 700; }
+.job span:last-child { font-weight: 400; color: #333; white-space: nowrap; }
+.kw { font-size: 8.6pt; color: #444; margin-bottom: 1px; }
+ul { margin: 1px 0 2px; padding-left: 15px; } li { margin: 1px 0; }
+.sk { display: grid; grid-template-columns: 118px 1fr; gap: 0 8px; margin: 1px 0; } .sk b { font-weight: 700; }
+.proj { margin: 4px 0 1px; font-weight: 700; } .stack { font-size: 8.6pt; color: #444; }
+a { color: #111; text-decoration: none; }
+.break { break-inside: avoid; }
+</style></head><body>
+
+<h1>JAMIL RAFIQUE SHAIKH</h1>
+<div class="sub">Senior SRE &amp; Platform Engineer | Kubernetes, GitOps, Performance &amp; Resilience | Available for contract &amp; consulting</div>
+<div class="contact">hi@jamilshaikh.in | +91 9930570701 | Navi Mumbai, India | jamilshaikh.in | github.com/jamilshaikh07 | linkedin.com/in/jamilshaikh07</div>
+
+<h2>Summary</h2>
+<div>11+ years in production across telecom, FinTech and cloud-native SaaS. Specialist in Talos Linux clusters, multi-cluster GitOps (ArgoCD, FluxCD), and the reliability side of platforms: load and stress testing, chaos engineering, disaster recovery and SLO-driven operations.</div>
+
+<h2>Core skills</h2>
+<div class="sk"><b>Kubernetes</b><span>Talos Linux, Cilium (eBPF, BGP), Kyverno, KEDA, HPA, CloudNativePG, Helm, OpenShift, AKS, GKE, EKS</span></div>
+<div class="sk"><b>GitOps &amp; CI/CD</b><span>ArgoCD (App-of-Apps), FluxCD, Kustomize, GitHub Actions, Azure DevOps, Jenkins, GitLab CI</span></div>
+<div class="sk"><b>Performance &amp; resilience</b><span>k6 (ramping-arrival-rate), load/stress/spike testing, chaos engineering, DR failover, RTO/RPO, capacity planning, SLI/SLO</span></div>
+<div class="sk"><b>Observability</b><span>VictoriaMetrics, Prometheus, Grafana, Loki, Datadog, Sumo Logic, alerting, MTTD/MTTR reduction</span></div>
+<div class="sk"><b>IaC &amp; automation</b><span>Terraform, Ansible, Crossplane, Python, Go, Bash</span></div>
+<div class="sk"><b>Cloud &amp; security</b><span>Azure, AWS, GCP, Proxmox, OpenStack, VMware Tanzu; Vault, Trivy, SAST/SCA/DAST, CVE remediation</span></div>
+
+<h2>Professional experience</h2>
+<div class="job"><span>Senior Consultant, Senior SRE | Improving India (formerly InfraCloud)</span><span>Sep 2024 - Present</span></div>
+<div class="kw">Clients: Medtronic, Acquia, Beamer</div>
+<ul>
+<li><b>Medtronic:</b> lead SRE productionising an industrial IoT pipeline (HiveMQ, Ignition, PostgreSQL/CNPG, Kafka Connect) on VMware Tanzu for rollout to 65 global sites, delivered to a regulated environment with a full evidence pack.</li>
+<li><b>Acquia:</b> SLO-driven alerting, hardened Kubernetes pipelines and runbooks that cut incident response time; made CVE remediation a tracked, auditable GitOps process across GKE/EKS.</li>
+<li><b>Beamer:</b> migrated 15 applications from GCP App Engine to GKE (Helm, GitHub Actions CI/CD, cost visibility) and improved MTTD/MTTR with focused dashboards and alerts.</li>
+</ul>
+
+<div class="break">
+<div class="job"><span>Senior DevOps Engineer | Opcito Technologies</span><span>Oct 2022 - Sep 2024</span></div>
+<div class="kw">Client: EMTECH (central-bank digital currency platform) | Azure, AKS, Terraform, Azure DevOps, Datadog, k6</div>
+<ul>
+<li>Ran 14 AKS clusters for a CBDC platform with zero tolerance for deployment failure; built Azure DevOps pipelines with promotion gates, automated validation and rollback triggers.</li>
+<li><b>Load testing:</b> designed and ran k6 load tests of up to <b>10,000 users</b> from an external generator at the standby cluster's own endpoint, using ramping-arrival-rate to hold request rate at 150% of the real production peak (taken from Datadog) with a weighted transaction mix. Tracked p95/p99 latency, error rate and HPA/node autoscaling to size the standby region.</li>
+<li><b>Chaos engineering and disaster recovery:</b> ran a regional-failure game day that produced a validated failover runbook (Traffic Manager cutover, 60 s DNS TTL, standby node-pool scale-up). When Azure's US region degraded for real, traffic was served from the standby region in under 90 minutes against a 2-hour RTO target, with near-zero RPO using Azure SQL geo-replication and idempotent transactions.</li>
+<li>Post-incident actions: automate the failover, move to active-active, add cross-region synthetic transactions.</li>
+<li>Reduced security incidents 40% (SAST/SCA/DAST), cut cloud spend 20% through right-sizing and autoscaling, improved deployment consistency 30%.</li>
+</ul>
+</div>
+
+<div class="job"><span>Senior Engineer, R&amp;D DevOps | Alepo Technologies</span><span>Aug 2021 - Oct 2022</span></div>
+<ul><li>Led OpenShift on OpenStack for Samsung Korea 5G VNF workloads: Jenkins pipelines, Helm charts with tracing and alerting, jMeter load validation at carrier scale.</li></ul>
+
+<div class="job"><span>Professional Services DevOps Engineer | Allot Communications</span><span>Nov 2019 - Jul 2021</span></div>
+<ul><li>Delivered on-prem Kubernetes HA clusters on OpenStack for telecom operators (ePLDT, Airtel, Lycamobile, MTN Uganda); replaced manual steps with repeatable Ansible playbooks.</li></ul>
+
+<div class="job"><span>Linux Server Administrator | Change Networks, Super Petroleum</span><span>Jan 2015 - Apr 2019</span></div>
+<ul><li>Linux/Windows servers, pfSense, LDAP and AWS migrations.</li></ul>
+
+<h2>Selected projects</h2>
+<div class="break"><div class="proj">Anvil - load and vulnerability testing (anvil.jamilshaikh.in)</div>
+<div>Ownership-verified platform that runs ZAP + Nuclei + testssl.sh scans and k6 load tests from temporary multi-region AWS spot workers, with spend caps, auto-abort and a kill switch. Used on my own production site: took a single backend from a flat ~150 req/s (503 storm at 500 users, caused by a readiness probe) to 3,100+ req/s with HPA-scaled read replicas and an edge cache, then ran a chaos game day and re-tested each fix.</div>
+<div class="stack">Next.js, k6, AWS, Kubernetes, ArgoCD, Cloudflare</div></div>
+<div class="break"><div class="proj">Talos Proxmox GitOps - production homelab (github.com/jamilshaikh07/talos-proxmox-gitops)</div>
+<div>Terraform, Ansible/Talos and ArgoCD App-of-Apps managing 27 applications alongside FluxCD; Cilium BGP, Cloudflare Tunnel, VictoriaMetrics, Velero and CNPG backups. Hosts real products: a 2-node cluster serving a live league site, a self-hosted PaaS and an AI SRE agent.</div></div>
+<div class="break"><div class="proj">spinup.in - self-hosted PaaS (spinup.in)</div>
+<div>Push-to-deploy platform on bare-metal Kubernetes: Go control plane, GitHub App webhooks, rootless Kaniko builds, per-tenant Postgres, Traefik and Cloudflare Tunnel. Multi-tenant, serving real sites.</div></div>
+<div class="break"><div class="proj">openclaw - AI SRE agent</div>
+<div>Kubernetes cron-based agent that detects CrashLoopBackOff and pod failures, correlates incidents, remediates within policy and posts structured alerts and postmortems to Mattermost.</div></div>
+
+<h2>Certifications &amp; education</h2>
+<div>CKAD (CNCF) | AZ-400 DevOps Engineer Expert | AZ-104 Azure Administrator | HashiCorp Terraform Associate</div>
+<div>B.Sc. Information Technology, Pillai's College, Mumbai (2014-2018) | Diploma in Computer Engineering, DY Patil Polytechnic (2007-2013)</div>
+</body></html>
