@@ -11,6 +11,7 @@
       <a href="/#experience">experience</a>
       <a href="/#projects">projects</a>
       <a href="/blog/">writing</a>
+      <a href="https://uptime.jamilshaikh.in/status/status" id="sys-status" target="_blank" rel="noopener" title="Live status of my products"><span class="sdot"></span><span id="sys-status-text">status</span></a>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
         <span id="theme-icon">☀️</span>
       </button>
@@ -18,3 +19,24 @@
     <a href="https://calendly.com/shaikh7jamil/30min" target="_blank" rel="noopener" class="nav-book-call">book a call</a>
   </div>
 </nav>
+
+<style>
+  #sys-status { display: inline-flex; align-items: center; gap: 6px; }
+  #sys-status .sdot { width: 7px; height: 7px; border-radius: 50%; background: var(--text-muted); }
+  #sys-status.up .sdot { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  #sys-status.down .sdot { background: #f87171; box-shadow: 0 0 6px #f87171; }
+</style>
+<script>
+(function () {
+  var b = 'https://uptime.jamilshaikh.in/api/status-page/', el = document.getElementById('sys-status');
+  if (!el || !window.fetch) return;
+  Promise.all([fetch(b + 'status').then(function (r) { return r.json(); }), fetch(b + 'heartbeat/status').then(function (r) { return r.json(); })])
+    .then(function (res) {
+      var ids = [], hb = res[1].heartbeatList || {}, down = 0;
+      res[0].publicGroupList.forEach(function (g) { g.monitorList.forEach(function (m) { ids.push(m.id); }); });
+      ids.forEach(function (id) { var v = hb[id]; if (v && v.length && v[v.length - 1].status !== 1) down++; });
+      el.className = down ? 'down' : 'up';
+      document.getElementById('sys-status-text').textContent = down ? down + ' issue' + (down > 1 ? 's' : '') : 'all systems up';
+    }).catch(function () {});
+})();
+</script>
