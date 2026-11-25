@@ -906,6 +906,34 @@
 
     <div class="project-card fade-in">
       <div class="project-header">
+        <div class="project-icon">🔨</div>
+        <div>
+          <div class="project-name">Anvil - load &amp; security testing</div>
+          <div class="project-tagline">Free, ownership-verified load and vulnerability testing with plain-English reports</div>
+        </div>
+      </div>
+      <p class="project-desc">
+        Built to learn what actually breaks under traffic. Verify a domain with a DNS record, then run a merged ZAP + Nuclei + testssl.sh scan, or a k6 load test from temporary AWS spot machines in several regions (Black Friday ramp to 10x, sudden spike). Safety is enforced in code: ownership proof, consent audit log, plan caps, a spend cap, auto-abort at 50% errors, self-terminating workers and an admin kill switch. Each result is explained in plain English, with a Learn section for newcomers. Used it on my own production site to take one backend pod from a flat ~150 req/s (503 storm at 500 users) to 3,100+ req/s with HPA-scaled read replicas and a Cloudflare cache rule, then ran a chaos game day on top.
+      </p>
+      <div class="project-flow" style="font-family:var(--font-mono);font-size:11px;color:var(--accent);margin:8px 0 16px;padding:6px 10px;background:var(--bg-secondary);border-radius:6px;border:1px dashed var(--border);display:inline-block;letter-spacing:0.02em;">
+        Verify Domain ➔ Scan / k6 Load ➔ Live Charts ➔ Plain-English Diagnosis
+      </div>
+      <div class="project-tech">
+        <span class="tag">Next.js</span>
+        <span class="tag">k6</span>
+        <span class="tag">ZAP</span>
+        <span class="tag">Nuclei</span>
+        <span class="tag">AWS Spot</span>
+        <span class="tag">Kubernetes</span>
+        <span class="tag">Chaos Engineering</span>
+      </div>
+      <a href="https://anvil.jamilshaikh.in" target="_blank" rel="noopener" class="project-link">Try Anvil →</a>
+      &nbsp;&nbsp;
+      <a href="/blog/anvil-load-testing-case-study/" class="project-link">Read the case study →</a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-header">
         <div class="project-icon">🛡️</div>
         <div>
           <div class="project-name">autofix-dojo</div>
