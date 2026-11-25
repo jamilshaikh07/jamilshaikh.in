@@ -1,6 +1,6 @@
 ---
 title: "Load testing my own site: from a flat 150 req/s to 3,100+, and a chaos game day"
-date: 2026-11-26
+date: 2026-11-25
 summary: "A measured case study on a real (small) site: a 503 storm caused by a readiness probe, the fixes that took one pod to 3,100+ req/s, and what breaking things on purpose taught me."
 tags: ["SRE", "Load Testing", "Chaos Engineering", "Kubernetes"]
 ---
